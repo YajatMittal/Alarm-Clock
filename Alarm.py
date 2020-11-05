@@ -12,13 +12,15 @@ background = pygame.transform.scale(background, (815,600))
 base_font = pygame.font.Font(None,50)
 user_text = ''
 user_text2 = ''
+
 input_rect_one =  pygame.Rect(565,360,190,50)
 input_rect_two = pygame.Rect(530,420,190,50)
 
+button =  pygame.Rect(350,480,190,50)
 
 color_active = pygame.Color('lightskyblue3')
-color_passive = pygame.Color('gray15')
-color = color_passive
+color = color_active
+black = (0,0,0)
 
 
 def main():
@@ -66,6 +68,9 @@ while True:
                 active2 = True
                 active1 = False
             
+            if button.collidepoint(event.pos):
+                main()
+                break
         if event.type == pygame.KEYDOWN:
             if active1 == True:
                 if event.key == pygame.K_BACKSPACE:
@@ -103,14 +108,8 @@ while True:
     input_rect_two.w = max(200,text_surface2.get_width() + 10)
 
 
+    pygame.draw.rect(screen,black,button)
+    text_surface5 = base_font.render("Enter", True, (225,225,225))
+    screen.blit(text_surface5,(392,488))
+
     pygame.display.update()  
-    if user_text != "" and user_text2 != "":
-        main()
-        break
-
-        
-
-
-
-
-
